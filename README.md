@@ -23,6 +23,4 @@ Ideas? [@mhrisse](http://twitter.com/mhrisse)
 * Viewport support
 * PJAX support
 * Support more AMD loaders
-
-### Also coming up
-* Drop jquery + underscore dependency 
+* Drop dependencies
