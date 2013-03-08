@@ -3,8 +3,7 @@ bagman
 
 ### Overview
 A tiny AMD-module to Lazy load and evaluate your AMD Javascript modules on a normal webage in the
-most simple way possible: by setting a <div data-module="mymodule"> in HTML.
-Designed to work with Almond or RequireJS.
+most simple way possible: by setting a <div data-module="mymodule"> in HTML. Designed to work with Almond or RequireJS.
 
 ### License
 Bagman has been created and maintained by 
