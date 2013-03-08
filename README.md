@@ -17,7 +17,8 @@ TBD
 
 ### License
 Bagman is running under the open-source MIT license.
-Please let me know your thoughts at ([@mhrisse](http://twitter.com/mhrisse))
+
+Ideas? ([@mhrisse](http://twitter.com/mhrisse))
 
 ### Coming Up
 * Viewport support
