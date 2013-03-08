@@ -1,5 +1,4 @@
 bagman (alpha)
-======
 
 ### Overview
 Not every project - especially legacy ones which come with massive content and no clean MVC pattern - can be refactored into a fancy onepage webapp. Bagman is a tiny AMD-module to do the dirty work for you and get some structure into the Javascipt mess most projects suffer from.
@@ -24,4 +23,3 @@ Ideas? [@mhrisse](http://twitter.com/mhrisse)
 * PJAX support
 * Support more AMD loaders
 * Drop dependencies
-
