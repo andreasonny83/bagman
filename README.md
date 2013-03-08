@@ -16,9 +16,8 @@ Designed to work with Almond or RequireJS.
 TBD
 
 ### License
-Bagman is running under the open-source MIT license.
-
-Ideas? ([@mhrisse](http://twitter.com/mhrisse))
+Bagman is licensed under the open-source MIT license.
+Ideas? [@mhrisse](http://twitter.com/mhrisse)
 
 ### Coming Up
 * Viewport support
