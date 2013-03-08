@@ -7,6 +7,11 @@ Not every project - especially legacy ones which massive content - can be a fanc
 It is designed to assist you with lazy-loading and evaluation of your AMD Javascript modules on a normal webage. This is done in the most simple way possible: by writing something like `<div data-foo-module="bar">` in your valid HTML5 code. Bagman will utilize an AMD loader to initialize the module and give you an instance for each occurance. Should not surprise other frameworks such as Angular or Knockout do it the same way.
 Designed to work with Almond or RequireJS. 
 
+### Dependencies
+* jQuery
+* RequireJS or Almond
+* Underscore
+
 ### Documentation
 TBD
 
@@ -19,3 +24,6 @@ under the open-source MIT license.
 * Viewport support
 * PJAX support
 * Support more AMD loaders
+
+### Also coming up
+* Drop jquery + underscore dependency 
