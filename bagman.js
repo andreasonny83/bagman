@@ -1,7 +1,7 @@
 /*
  * Bagman
  * 
- * Lazy load and evaluate your modular Javascript (AMD) 
+ * Tiny manager to lazy load and evaluate your modular Javascript (AMD) 
  * on multi-page websites.
  *
  * copyright (c) 2012 by Matthias H. Risse
@@ -38,10 +38,15 @@ define(
 			}
 		}
 
-		// Boil down mutiple occurences to modules used
+		/* 
+		 * Boil down mutiple occurences to modules used
+		 */
 		used = _.unique(onPage);
 
-		// Polyfil IE8-
+		/*
+		 * Polyfil IE8-
+		 * Remove by using constructor instead?
+		 */
 		if (!Object.create) {
 		    Object.create = function (o) {
 		        if (arguments.length > 1) {
