@@ -1,10 +1,17 @@
 bagman
 ======
 
-Lazy load and evaluate your AMD Javascript modules on a normal webage in the
+### Overview
+A tiny AMD-module to Lazy load and evaluate your AMD Javascript modules on a normal webage in the
 most simple way possible: by setting a <div data-module="mymodule"> in HTML.
 Designed to work with Almond or RequireJS.
 
-Soon: PJAX support
+### License
+Bagman has been created and maintained by 
+Matthias H. Risse ([@mhrisse](http://twitter.com/mhrisse)) and is available
+under the open-source MIT license.
 
-Bagman is created by Matthias H. Risse (@mhrisse)
+### Coming Up
+* Viewport support
+* PJAX support
+* Support more AMD loaders
