@@ -12,7 +12,7 @@
  * @url https://github.com/mhrisse/bagman
  * @author matthias@theotherpeople.de (@mhrisse)
  * @license: MIT
- * @version 0.2.1
+ * @version 0.2.2
  *
  * @TODO remove debug
  * @TODO define API to let module instances communicate
@@ -28,8 +28,10 @@ define(
 		// defaults + definitions
 		var config = {
 				"container": "body", // jquery selector
-				"hook": "module", // data-module
-				"config": "config" // data-config
+				"hook": "module", // module in data-module
+				"config": "config", // config in data-config
+				"global": false, // expose pub as global variable
+				"debug": false  // debug mode (green = loaded/invoked on pageload, orange = loading & invokation delayed after onload)
 			},
 			selector = '',
 			moduleQuery = {},
@@ -51,7 +53,7 @@ define(
 
 		// public API
 		pub.onloadDone = false;
-		pub.debug = false;
+		pub.debug = config.debug;
 
 		pub.init = function () {
 			// Mark modules which are inViewport
@@ -78,6 +80,8 @@ define(
 					priv.instanciate($(value).data(config.hook), value, $(value).data(config.config));
 				});
             });
+
+            return pub;
 		};
 
 		// private 
@@ -129,8 +133,19 @@ define(
 			});
 		};
 
+		// better be save than sorry
 		$(function () {
+
+			// start 
 			pub.init();
+
+			// expose global bagman (for debug), if configured to do so
+			if (config.global === true) {
+				pub.config = config;
+				pub.modules = moduleQuery;
+				window.bagman = pub;
+			}
+
 		});
 
 		return pub;
