@@ -14,16 +14,6 @@ especialy on mobile devices with small screens and slow processors.
 Utilizes almond.js and require.js AMD loaders by calling require() for modules
 being in use. Looks familiar? Onepager Frameworks such as Angular or Knockout also utilize this pattern (in a different way tho) to keep your code readable. Designed to work with Almond or RequireJS. 
 
-### Example
-TBD
-
-### Documentation
-TBD
-
-### License
-Bagman is licensed under the open-source MIT license.
-Ideas? [@mhrisse](http://twitter.com/mhrisse)
-
 ### Dependencies
 * jQuery 1.7+
 
@@ -33,3 +23,14 @@ Ideas? [@mhrisse](http://twitter.com/mhrisse)
 ### Coming Up
 * PJAX support
 * Support more AMD loaders
+
+### Example
+<div data-module="slider"> <!-- more of your html code --> </div>
+
+### Documentation
+TBD
+
+### License
+Bagman is licensed under the open-source MIT license.
+Ideas, critique and improvements welcome!
+[@mhrisse](http://twitter.com/mhrisse)
