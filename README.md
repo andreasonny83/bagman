@@ -9,7 +9,7 @@ evaluates your modular Javascript ([AMD](https://github.com/amdjs/amdjs-api/wiki
 multi-page projects such as large corporate websites managing tons of content where you do not know
 on the server during HTML-rendertime which Javascript you will need 
 on the page and you figured that your script.js spaghetti-file is far beyond 3000 lines. 
-Of course, this simple module is in AMD format itself.
+Of course, this simple module is in AMD format itself - presto!
 
 The Bagman supports lazyloading of modules not in viewport
 at the time of page initialization which can speed up loading time,
