@@ -1,145 +1,125 @@
 /*
- * Bagman
+ * bagman.js
  * 
- * Tiny manager to lazy load and evaluate your modular Javascript (AMD) 
- * on multi-page websites.
+ * Find out which modules are on the page and lazy load and 
+ * evaluate your modular Javascript (AMD) accordingly. Handy for
+ * multi-page projects. Supports lazyloading of modules not in viewport
+ * at the time of page initialization which can speed up loading time,
+ * especialy on mobile devices with small screens and slow processors.
+ * Works with almond, but makes most sense with a loader that can perform
+ * lazyloading such as require.js, 
  *
- * copyright (c) 2012 by Matthias H. Risse
- * 
- * The MIT License (MIT)
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * @author matthias@theotherpeople.de (@mhrisse)
+ * @license: MIT
+ * @version 0.2.0
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * Next Version:
+ * @TODO move config outside
+ * @TODO remove debug
+ * @TODO define API to let module instances communicate
+ * @TODO define API to update/dispose (pjax)
  */
 
-/*jslint nomen: true, browser: true */
-/*global define, require, jQuery, $, _ */
 define(
 	'bagman',
-	['jquery', 'underscore'],
-	function ($, _) {
+	['jquery'],
+	function ($) {
 		"use strict";
 
-		var selector = '*[data-module]',
-			$module = $(selector),
-			onPage = [],
-			i = 0,
-			used = [],
+		var container = 'body',
+			selector = '*[data-module]',
+			$module = $(container).find(selector),
+			inViewport = [],
+			notInViewport = [],
 			modules = [],
 			loaded = 0,
-			initReady = false,
-			pub = {};
+			priv = {},
+			pub = {},
+			helperId = 0;
 
-		// Create array of modules on page
-		for (i = 0; i < $module.length; i = i + 1) {
-			if ($($module[i]).data('module') !== '') {
-				onPage.push($($module[i]).data('module'));
-			}
-		}
-
-		/* 
-		 * Boil down mutiple occurences to modules used
-		 */
-		used = _.unique(onPage);
-
-		/*
-		 * Polyfil IE8-
-		 * Remove by using constructor instead?
-		 */
-		if (!Object.create) {
-		    Object.create = function (o) {
-		        if (arguments.length > 1) {
-		            throw new Error('Object.create implementation only accepts the first parameter.');
-		        }
-		        function F() {}
-		        F.prototype = o;
-		        return new F();
-		    };
-		}
-
-
-		// @todo feature
-		// only initialize module if in viewport,
-		// otherwise put on heap and re-evaluate when scrolling
-		//
-		// http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
-		//
-		// function elementInViewport(el) {
-		//   var rect = el.getBoundingClientRect()
-		//   return rect.top < (window.innerHeight || document.body.clientHeight) && rect.left < (window.innerWidth || document.body.clientWidth);
-		// }
-		// // and then you can use it:
-		// alert(elementInViewport(document.getElementById('inner')));
-		// // or
-		// alert(elementInViewport($('#inner')[0]));​
-
-
-		/*
-		 * Kick-off loading of modules by issuing a require call to the
-		 * AMD loader.
-		 */
-		require(used,
-			function () {
-				var args = arguments;
-
-				$(function () {
-					/*
-					 * When all modules mentioned in array used are loaded,
-					 * this callback will initialize each instance of a module on the page.
-					 */
-					$module.each(function (i, el) {
-						if ($(this)) {
-						// console.log('ele:' + i);
-							var node = $(this),
-								id = node.data('module'),
-								config = node.data('config'),
-								index = i,
-								m = {};
-							index = _.indexOf(used, onPage[i]);
-
-							// initialize module for each appearance on page 
-							try {
-								m = Object.create(args[index].init(node, config));
-							} catch (e) {
-								// console.log('mhh..' + id);
-								// console.log(e);
-							}
-							m.id = _.uniqueId();
-							m.module = onPage[i];
-							modules.push(m);
-							loaded = loaded + 1;
-						}
-					});
-
-					// flag if all modules on page loaded
-					if (loaded === onPage.length) {
-						initReady = true;
-					}
-				});
-			});
-
-		// the public interface
+		// public API
+		pub.onloadDone = false;
+		pub.debug = false;
 
 		pub.init = function () {
-			return this;
+			// Mark modules which are inViewport
+			$.each($module, function (index, value) {
+				if (priv.elementInViewport(value)) {
+					inViewport.push(value);
+					value.inViewport = true;
+					priv.instanciate($(value).data('module'), value, $(value).data('config'));
+				} else {
+					notInViewport.push(value);
+					value.inViewport = false;
+				}
+			});
+
+			// Delay init of module not in viewport until onload has fired
+            $(window).load(function () {
+				if (pub.debug) {
+					console.log('* onLoad ..');
+				}
+
+				pub.onloadDone = true;
+
+				$.each(notInViewport, function (index, value) {
+					priv.instanciate($(value).data('module'), value, $(value).data('config'));
+				});
+            });
 		};
 
-		// Rescans part of the page (for example after a PJAX request has successfully loaded)
-		// and initializes the modules found. 
-		pub.update = function ($domNode) {
-			// console.log('updating modules..');
-			return this;
+		// private 
+		// http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+		priv.elementInViewport = function (el) {
+			var rect = el.getBoundingClientRect();
+			return rect.top < (window.innerHeight || document.body.clientHeight) && rect.left < (window.innerWidth || document.body.clientWidth);
 		};
 
-		pub.getModules = function (callback) {
-			return modules;
+		priv.instanciate = function (module, el, config) {
+			helperId = helperId + 1;
+			var helper = 'helper' + (helperId),
+				required = [];
+
+			define(helper, [],
+				{
+					"module": module,
+					"el": el,
+					"config": config
+				}
+				);
+
+			// console.log(helper);
+			required.push(module);
+			required.push(helper);
+
+			require(required, function (mod, helper) {
+				var m = {};
+				try {
+					// intianitiate module and call it's init method, handing over the domnode
+					m = new mod.init($(helper.el), helper.config);
+
+					if (pub.debug) {
+						if (helper.el.inViewport === true) {
+							$(helper.el).css('border', '1px solid green');
+							console.log('init ..');
+							console.log($(helper.el));
+						} else {
+							$(helper.el).css('border', '1px solid orange');
+						}
+					}
+
+					// console.dir(m);
+				} catch (e) {
+					if (pub.debug) {
+						console.log('module: :' + e.message);
+					}
+				}
+			});
 		};
 
-
-		pub.onComplete = function (callback) {
-			//
-		};
+		$(function () {
+			pub.init();
+		});
 
 		return pub;
 	}
