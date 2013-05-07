@@ -36,7 +36,9 @@ being in use. Looks familiar? Onepager Frameworks such as Angular or Knockout al
 
 ### JS
 
-#### in your main.js or app.js file where you setup requirejs
+Setup is fairly easy. In your main file (usually main.js or app.js) , where you setup requirejs
+configuration, simple set certain variables if you the standard does not suit your
+project / html5-markup.
 
 ```javascript
 require.config({
@@ -51,8 +53,8 @@ require.config({
 });
 ```
 
-// everything set. let's go.
-// invoke/load all modules to be loadaed on every pagerequest
+That done, you invoke/load all modules to be loadaed on every pagerequest.
+
 ```javascript
 require(
 	[
