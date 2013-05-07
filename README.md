@@ -16,6 +16,7 @@ being in use. Looks familiar? Onepager Frameworks such as Angular or Knockout al
 
 ### Dependencies
 * jQuery 1.7+
+* AMD Loader (almond or requirejs)
 
 ### Features
 * Viewport support
