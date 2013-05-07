@@ -1,22 +1,10 @@
-/*
+/*!
  * bagman.js
  * 
- * Find out which modules are on the page and lazy load and 
- * evaluate your modular Javascript (AMD) accordingly. Handy for
- * multi-page projects. Supports lazyloading of modules not in viewport
- * at the time of page initialization which can speed up loading time,
- * especialy on mobile devices with small screens and slow processors.
- * Works with almond, but makes most sense with a loader that can perform
- * lazyloading such as require.js, 
- *
- * @url https://github.com/mhrisse/bagman
- * @author matthias@theotherpeople.de (@mhrisse)
- * @license: MIT
- * @version 0.2.2
- *
- * @TODO remove debug
- * @TODO define API to let module instances communicate
- * @TODO define API to update/dispose (pjax)
+ * @url 		https://github.com/mhrisse/bagman
+ * @author 		matthias@theotherpeople.de (@mhrisse)
+ * @license 	MIT
+ * @version 	0.2.2
  */
 
 define(
