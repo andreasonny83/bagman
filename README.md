@@ -1,17 +1,21 @@
 [bagman.js](https://github.com/mhrisse/bagman)
 
 ## Overview
-Find out which modules are on the page and lazy load and 
-evaluate your modular Javascript ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)) accordingly. Handy for
-multi-page projects such as corporate websites where you do not know
-on the server during html-rendertime which javascript you will need 
-on the page.
 
-Supports lazyloading of modules not in viewport
+The [bagman](http://en.wikipedia.org/wiki/Bagman) does the dirty work for your Javascript multipage projects.
+
+He finds out which modules are on the page and lazy load and 
+evaluates your modular Javascript ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)) accordingly. He is handy for
+multi-page projects such as large corporate websites managing tons of content where you do not know
+on the server during HTML-rendertime which Javascript you will need 
+on the page and you figured that your script.js spaghetti-file is far beyond 3000 lines. 
+Of course, this simple module is in AMD format itself.
+
+The Bagman supports lazyloading of modules not in viewport
 at the time of page initialization which can speed up loading time,
 especialy on mobile devices with small screens and slow processors.
  
-Utilizes almond.js and [require.js](https://requirejs.org) AMD loaders by calling `require()` for modules
+He utilizes almond.js and [require.js](https://requirejs.org) AMD loaders by calling `require()` for modules
 being in use. Looks familiar? Onepager Frameworks such as Angular or Knockout also utilize this pattern (in a different way tho) to keep your code readable. Currently
 designed to work with Almond or RequireJS, but will work with other loaders such as CloudflareJS and . 
 
@@ -21,6 +25,7 @@ designed to work with Almond or RequireJS, but will work with other loaders such
 
 ## Features
 * Viewport support
+* Configuration
 
 ## Coming Up
 * Anonymized module
