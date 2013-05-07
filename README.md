@@ -28,8 +28,15 @@ designed to work with Almond or RequireJS, but will soon also work with other lo
 * Configuration
 
 ## Install
-Download this git repository or use the [bower](https://bower.io) package manager:
+Download this git repository. If you like Javascript and Node, consider using
+[bower](https://bower.io) package manager. Go to your website's or app's directory and type:
 
+Install bower
+```javascript
+npm install -g bower
+```
+
+Then install bagman
 ```javascript
 bower install bagman
 ```
