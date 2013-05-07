@@ -12,10 +12,8 @@
  * @url https://github.com/mhrisse/bagman
  * @author matthias@theotherpeople.de (@mhrisse)
  * @license: MIT
- * @version 0.2.0
+ * @version 0.2.1
  *
- * Next Version:
- * @TODO move config outside
  * @TODO remove debug
  * @TODO define API to let module instances communicate
  * @TODO define API to update/dispose (pjax)
@@ -23,13 +21,18 @@
 
 define(
 	'bagman',
-	['jquery'],
-	function ($) {
+	['jquery', 'module'],
+	function ($, module) {
 		"use strict";
 
-		var container = 'body',
-			selector = '*[data-module]',
-			$module = $(container).find(selector),
+		// defaults + definitions
+		var config = {
+				"container": "body", // jquery selector
+				"hook": "module", // data-module
+				"config": "config" // data-config
+			},
+			selector = '',
+			moduleQuery = {},
 			inViewport = [],
 			notInViewport = [],
 			modules = [],
@@ -38,17 +41,25 @@ define(
 			pub = {},
 			helperId = 0;
 
+		// set configuration (if any)
+		$.extend(config, module.config());
+
+		selector = '*[data-' + config.hook + ']';
+
+		// get modules on page
+		moduleQuery = $(config.container).find(selector);
+
 		// public API
 		pub.onloadDone = false;
 		pub.debug = false;
 
 		pub.init = function () {
 			// Mark modules which are inViewport
-			$.each($module, function (index, value) {
+			$.each(moduleQuery, function (index, value) {
 				if (priv.elementInViewport(value)) {
 					inViewport.push(value);
 					value.inViewport = true;
-					priv.instanciate($(value).data('module'), value, $(value).data('config'));
+					priv.instanciate($(value).data(config.hook), value, $(value).data(config.config));
 				} else {
 					notInViewport.push(value);
 					value.inViewport = false;
@@ -64,7 +75,7 @@ define(
 				pub.onloadDone = true;
 
 				$.each(notInViewport, function (index, value) {
-					priv.instanciate($(value).data('module'), value, $(value).data('config'));
+					priv.instanciate($(value).data(config.hook), value, $(value).data(config.config));
 				});
             });
 		};

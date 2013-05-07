@@ -30,12 +30,39 @@ being in use. Looks familiar? Onepager Frameworks such as Angular or Knockout al
 ## Example
 
 ### HTML
-`<div data-module="slider"> <!-- more of your html code --> </div>`
+```html
+<div data-module="slider"> <!-- more of your html code --> </div>
+```
 
 ### JS
-TBD
 
-## Documentation
+#### in your main.js or app.js file where you setup requirejs
+
+```javascript
+require.config({
+	"config": {
+		// configuring bagman
+        "bagman": {
+            "container": "body", // search the whole body
+            "hook": "module", // look e.g. for data-module="slider"
+			"config": "config" // use data-config="{ ..json .. }" for further configuration of the module
+        }
+    }
+});
+```
+
+// everything set. let's go.
+// invoke/load all modules to be loadaed on every pagerequest
+```javascript
+require(
+	[
+		'jquery',
+		'bagman'
+	]
+);
+```
+
+## API
 TBD
 
 ## License
