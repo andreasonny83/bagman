@@ -37,7 +37,7 @@ being in use. Looks familiar? Onepager Frameworks such as Angular or Knockout al
 ### JS
 
 Setup is fairly easy. In your main file (usually main.js or app.js) , where you setup requirejs
-configuration, simple set certain variables if you the standard does not suit your
+configuration, simple set certain variables if you the standard does not suit you or your
 project / html5-markup.
 
 ```javascript
@@ -63,6 +63,11 @@ require(
 	]
 );
 ```
+
+When the Javascript parser hits e.g. a `<div data-module='slider' data-config='{ "color": "blue" }'>` it will load the AMD-module
+called `slider` and then tries to call a .init function, passing in the domNode (jQuery object) as the 
+first argument and e.g. the contents of `data-config`. I personally often find it handy to pass in a JSON object to configure
+the module instance, but it can be virtually anything that can be represented as a string. 
 
 ## API
 TBD
