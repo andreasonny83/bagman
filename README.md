@@ -27,6 +27,13 @@ designed to work with Almond or RequireJS, but will soon also work with other lo
 * Viewport support
 * Configuration
 
+## Install
+Download this git repository or use the [bower](https://bower.io) package manager:
+
+```javascript
+bower install bagman
+```
+
 ## Coming Up
 * Anonymized module
 * PJAX support
