@@ -1,4 +1,4 @@
-bagman.js
+[bagman.js](https://github.com/mhrisse/bagman)
 
 ### Overview
 Find out which modules are on the page and lazy load and 

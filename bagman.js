@@ -9,6 +9,7 @@
  * Works with almond, but makes most sense with a loader that can perform
  * lazyloading such as require.js, 
  *
+ * @url https://github.com/mhrisse/bagman
  * @author matthias@theotherpeople.de (@mhrisse)
  * @license: MIT
  * @version 0.2.0
