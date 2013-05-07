@@ -1,0 +1,8 @@
+{
+  "name": "bagman",
+  "version": "0.2.2",
+  "main": ["./bagman.js"],
+  "dependencies": {
+    "jquery": "~1.8.0"
+  }
+}
