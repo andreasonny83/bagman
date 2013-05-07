@@ -17,7 +17,7 @@ especialy on mobile devices with small screens and slow processors.
  
 He utilizes almond.js and [require.js](https://requirejs.org) AMD loaders by calling `require()` for modules
 being in use. Looks familiar? Onepager Frameworks such as Angular or Knockout also utilize this pattern (in a different way tho) to keep your code readable. Currently
-designed to work with Almond or RequireJS, but will work with other loaders such as CloudflareJS and . 
+designed to work with Almond or RequireJS, but will soon also work with other loaders such as Cloudflare.JS, curl.js or [The Dojo Loader](http://dojotoolkit.org/reference-guide/1.9/loader/).
 
 ## Dependencies
 * jQuery 1.7+
