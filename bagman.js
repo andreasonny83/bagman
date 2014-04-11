@@ -1,12 +1,13 @@
 /*
- * bagman.js
+ * Bagman - your modular javascript delivery boy
  * 
- * Find out which modules are on the page and lazy load and 
- * evaluate your modular Javascript (AMD) accordingly. Handy for
- * classic multi-page projects using requirejs. 
+ * Finds out which modules are on the page and lazyloads, 
+ * evaluates, instanciates and initializes the Javascript modules
+ * using AMD/requirejs accordingly. Supports easy cross-module communication. 
  *
- * - Tries to lazyload and lazyeval (via requirejs) all modules that are not in viewport on initial pageload
- * - Populates the modules with some references, e.g. "el" or "config", etc.
+ * Handy for classic multi-page projects using requirejs
+ * with a CMS. Battle-tested with a 100+ million visitors / month 
+ * Wordpress site. 
  *
  * @url https://github.com/mhrisse/bagman
  * @author risse@risse.org (@mhrisse)

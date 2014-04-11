@@ -1,23 +1,14 @@
-[bagman.js](https://github.com/mhrisse/bagman)
+[Bagman](http://en.wikipedia.org/wiki/Bagman) - your modular javascript delivery boy.
 
 ## Overview
 
-The [bagman](http://en.wikipedia.org/wiki/Bagman) does the dirty work for your Javascript multipage projects.
+Finds out which modules are on the page and lazyloads, 
+evaluates, instanciates and initializes the Javascript modules
+using AMD/requirejs accordingly. Supports easy cross-module communication. 
 
-He finds out which modules are on the page and lazy load and 
-evaluates your modular Javascript ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)) accordingly. He is handy for
-multi-page projects such as large corporate websites managing tons of content where you do not know
-on the server during HTML-rendertime which Javascript you will need 
-on the page and you figured that your script.js spaghetti-file is far beyond 3000 lines. 
-Of course, this simple module is in AMD format itself - presto!
-
-The Bagman supports lazyloading of modules not in viewport
-at the time of page initialization which can speed up loading time,
-especialy on mobile devices with small screens and slow processors.
- 
-He utilizes almond.js and [require.js](https://requirejs.org) AMD loaders by calling `require()` for modules
-being in use. Looks familiar? Onepager Frameworks such as Angular or Knockout also utilize this pattern (in a different way tho) to keep your code readable. Currently
-designed to work with Almond or RequireJS, but will soon also work with other loaders such as Cloudflare.JS, curl.js or [The Dojo Loader](http://dojotoolkit.org/reference-guide/1.9/loader/).
+Handy for classic multi-page projects using requirejs
+with a CMS. Battle-tested with a 100+ million visitors / month 
+Wordpress site. 
 
 ## Dependencies
 * jQuery 1.7+
@@ -28,8 +19,8 @@ designed to work with Almond or RequireJS, but will soon also work with other lo
 * Configuration
 
 ## Install
-Download this git repository. If you like Javascript and Node, consider using
-[bower](https://bower.io) package manager. Go to your website's or app's directory and type:
+Download this git repository or use 
+[bower](https://bower.io)
 
 Install bower
 ```javascript
@@ -40,11 +31,6 @@ Then install bagman
 ```javascript
 bower install bagman
 ```
-
-## Coming Up
-* Anonymized module
-* PJAX support
-* Support more AMD loaders
 
 
 ## Example
