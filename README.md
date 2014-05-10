@@ -43,6 +43,7 @@ bower install bagman
 ### JS
 
 Since this is based on [RequireJS](https://requirejs.org) and [AMD modules](https://github.com/amdjs/amdjs-api/blob/master/AMD.md), you need to understand the basic principles first.
+
 Setup is fairly easy. In your main file (usually main.js or app.js in the bottom of your HTML page), where you setup requirejs
 configuration, simple set certain variables if you the standard does not suit you or your
 project's html5-markup.
@@ -90,4 +91,6 @@ console.log(bagman.instances) // list of modules on the page
 ## License
 Bagman is licensed under the open-source MIT license.
 Ideas, critique and improvements welcome!
-[@mhrisse](http://twitter.com/mhrisse) www.risse.org
+
+[@mhrisse](http://twitter.com/mhrisse) 
+www.risse.org
