@@ -12,7 +12,7 @@
  * @url https://github.com/mhrisse/bagman
  * @author risse@risse.org (@mhrisse)
  * @license: MIT
- * @version 0.2.3
+ * @version 0.2.4
  *
  */
 
@@ -229,7 +229,7 @@ define(
 					}
 
 				} catch (e) {
-					if (pub.debug) {
+					if (pub.debug && window.console) {
 						console.log('module: ' + e.message);
 					}
 				}
