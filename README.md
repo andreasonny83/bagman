@@ -42,7 +42,7 @@ bower install bagman
 
 ### JS
 
-Setup is fairly easy. In your main file (usually main.js or app.js), where you setup requirejs
+Setup is fairly easy. In your main file (usually main.js or app.js in the bottom of your HTML page), where you setup requirejs
 configuration, simple set certain variables if you the standard does not suit you or your
 project's html5-markup.
 
@@ -59,7 +59,7 @@ require.config({
 });
 ```
 
-That done, you invoke/load all modules to be loadaed on every pagerequest.
+That done, you invoke/load all modules to be loadaed on every pagerequest (in the bottom of your HTML page, below the configuration above).
 
 ```javascript
 require(
