@@ -1,4 +1,5 @@
-[Bagman](http://en.wikipedia.org/wiki/Bagman) - your modular javascript delivery boy.
+[Bagman](http://en.wikipedia.org/wiki/Bagman)
+======
 
 ## Overview
 
